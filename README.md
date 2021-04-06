@@ -1,5 +1,6 @@
 # courses-gs
-course-notifier but written in google scripts.
+[course-notifier](https://github.com/bktsim/course-notifier), but it's written for use in Google App Scripts.
+Please note that this is not intended for actual use - it is just a fun project that I decided to write during my free time. I take no liability/responsibility for any consequences that occur from using this application. 
 
 ## Usage
 1. Edit the courses array and create courses based on the courses that you want to track.
