@@ -14,4 +14,9 @@ Please note that this is not intended for actual use - it is just a fun project 
 6. Create a time-based trigger that runs every minute.
 
 ### Apparently...
-The quota limit for Google Apps Script really isn't intended for this. I have added Main.py and Course.py which essentially does what the google script app does, but in python.
+The quota limit for Google Apps Script really isn't intended for this. I have added Main.py and Course.py which essentially does what the google script app does, but in python. 
+
+You need the following libraries to run it:
+ * discord_webhook
+ * BeautifulSoup4
+ * requests
