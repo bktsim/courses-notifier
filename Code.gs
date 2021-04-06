@@ -1,13 +1,11 @@
-const discordId = ""
-const discordTag = "<@" + discordId + ">";
-const discordWebhook = "";
-
-const appCooldown = 10000; // in milliseconds
-
 /*
+  A class that represents a course
+  
   String courseName: name of course
   String link: URL to course registration page
   Boolean trackRestrictedSeats: true if user is eligible for restricted seats for that specific section
+  
+  Constructor: new Course(courseName, link, trackRestrictedSeats)
 */
 class Course {
 
@@ -34,11 +32,26 @@ class Course {
   }
 };
 
-// example course left (as example)
+/*
+  CONFIGURATION
+    - Change discordId to your Discord ID
+    - Change discordWebhook to your Discord Webhook URL
+    - ONLY increase appCooldown - do NOT decrease appCooldown - you will get in trouble.
+    
+  courses is an array of courses to iterate (check) through. A course is left as an example in the array.  
+    - Add courses that you want to get seats into the courses array
+*/
+const discordId = ""
+const discordWebhook = "";
+const appCooldown = 10000; // in milliseconds
 const courses = [
   new Course("WRDS 150B 511", "https://courses.students.ubc.ca/cs/courseschedule?pname=subjarea&tname=subj-section&dept=WRDS&course=150B&section=511", false),
 ];
+const discordTag = "<@" + discordId + ">";
 
+/*
+  Runs the script to check courses - and terminates it after a minute to prevent overlapping with the next trigger.
+*/
 function findCourses() {
   var startTime = Date.now();
   while (Date.now() - startTime < 60000) {
@@ -57,8 +70,10 @@ function findCourses() {
 }
 
 /*
-  String courseName: Name of the course
-  https://www.labnol.org/code/20563-post-message-to-discord-webhooks
+  Course course: The course with seats available
+  CITATION: https://www.labnol.org/code/20563-post-message-to-discord-webhooks
+  
+  Sends a message to the discord webhook if a course is found to have empty seats.
 */
 function sendNotification(course) {
   var message = discordTag + ", there is a seat opening for " + course.getCourseName() + " at " + course.getCourseURL();
@@ -77,6 +92,8 @@ function sendNotification(course) {
 
 /*
   String link: URL to course registration page
+  
+  Sends a request to the ssc link and checks the number of general and restricted seats available for that course.
 */
 function getSeats(link) {
   const content = UrlFetchApp.fetch(link).getContentText();
