@@ -12,3 +12,6 @@ Please note that this is not intended for actual use - it is just a fun project 
 4. Copy the code and paste it in a new Google Apps Script
 5. Install Cheerio in Libraries (Script ID: 1ReeQ6WO8kKNxoaA_O0XEQ589cIrRvEBA9qcWpNqdOP17i47u6N9M5Xh0)
 6. Create a time-based trigger that runs every minute.
+
+### Apparently...
+The quota limit for Google Apps Script really isn't intended for this. I have added Main.py and Course.py which essentially does what the google script app does, but in python.
