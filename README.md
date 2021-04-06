@@ -3,7 +3,7 @@ course-notifier but written in google scripts.
 
 ## Usage
 1. Edit the courses array and create courses based on the courses that you want to track.
-  * The course class has parameters `String courseName, String URL, Boolean hasRestrictedSeats`.
+  * The course class has parameters `String courseName, String URL, Boolean trackRestrictedSeats`.
   * For example: `new Course("WRDS 150B 511", "https://courses.students.ubc.ca/cs/courseschedule?pname=subjarea&tname=subj-section&dept=WRDS&course=150B&section=511", false)` means that you are tracking WRDS 150B 511, the link to the course is that, and that you have no access to restricted seats.
   * Add as many as you want (add commas to the end for multiple entries)
 2. Create a Discord Webhook and put the URL (as a string) into `const discordWebhook` as a string.
