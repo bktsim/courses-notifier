@@ -1,4 +1,4 @@
-# courses-gs
+# courses-notifier
 
 This application is capable of tracking restricted and general seats for UBC classes. The file with `.gs` extension is a script that can be used on Google Apps Script. The file(s) with `.py` extension is a script that can be used locally on a computer. 
 
