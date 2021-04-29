@@ -1,6 +1,6 @@
 # courses-notifier
 
-This application is capable of tracking restricted and general seats for UBC classes. The file with `.gs` extension is a script that can be used on Google Apps Script. The file(s) with `.py` extension is a script that can be used locally on a computer. 
+This application is capable of tracking restricted and general seats for UBC classes. The file with `.gs` extension is a script that can be used on Google Apps Script. The file(s) with `.py` extension is a script that can be used locally on a computer. The folder and files inside `heroku-course` is a version that can be deployed onto Heroku and ran on a Dyno. It is the most sophisticated version and contains the use of OOP and the observer pattern.
 
 The application checks for available seats every n seconds, and pings the user by sending a message via a Discord webhook into a private channel if a seat is available.
 
