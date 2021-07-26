@@ -157,12 +157,14 @@ class Section:
 
     def notifyUsers(self, restricted_only: bool) -> None:
         if len(self.__users) == 0:
-            return
-        print(("RESTRICTED " if restricted_only else "SEAT FOUND FOR: ") +
-              self.__course.getName() + " " + self.__name)
+            return None
+
+        print(("RESTRICTED " if restricted_only else "SEAT FOUND FOR: ") + self.__course.getName() + " " + self.__name)
 
         for register_user in self.__users:
-            if (not restricted_only) or (restricted_only and register_user.getRestricted):
+            if (not restricted_only) or (restricted_only and register_user.getRestricted()):
+                print("Notifying " + register_user.getUser().getDiscordId() + " for " +
+                      self.__course.getName() + " " + self.__name)
                 register_user.getUser().notify(self)
 
 
@@ -201,7 +203,7 @@ class Course:
     # Sets up course by adding all sections if the self.__sections is empty.
     # Otherwise, fetch data from course_url and notify users if any seats are available.
     def checkCourseSeats(self):
-        soup = BeautifulSoup(requests.get(self.getUrl()).content, "html.parser").select(".section-summary")[0]
+        soup = BeautifulSoup(requests.get(self.getUrl(), headers={'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:20.0) Gecko/20100101 Firefox/20.0'}).content, "html.parser").select(".section-summary")[0]
         setup = True if len(self.__sections) == 0 else False
 
         for section in soup.select(".section1, .section2"):
@@ -211,7 +213,7 @@ class Course:
             # prevent weird courses
             if link:
                 section_name = link.contents[0].replace(self.getName(), "").strip()
-                url = "https://courses.students.ubc.ca/" + link['href']
+                url = "https://courses.students.ubc.ca" + link['href']
 
                 general_seats = True if len(results[0].contents[0].strip()) == 0 else False
                 restricted_seats = True if results[0].contents[0] == "Restricted" else False
